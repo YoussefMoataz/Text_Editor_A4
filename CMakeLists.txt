@@ -3,4 +3,5 @@ project(Text_Editor_A4)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Text_Editor_A4 main.cpp)
+add_executable(Text_Editor_A4 TextEditorApp.cpp)
+add_executable(Text_Editor_A4_Func TextEditorFunc.cpp)
