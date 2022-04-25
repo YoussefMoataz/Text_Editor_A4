@@ -1,5 +1,5 @@
 #include <iostream>
-#include "TextEditorFunc.cpp"
+#include "TextEditorFunctions.cpp"
 
 using namespace std;
 
