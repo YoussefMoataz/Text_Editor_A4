@@ -5,9 +5,7 @@ using namespace std;
 
 int main() {
 
-    cout << "Hello, World!" << endl;
-
-    cout << sum(5, 6);
+    getChoices();
 
     return 0;
 }
