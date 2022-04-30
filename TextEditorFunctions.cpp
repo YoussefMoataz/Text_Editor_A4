@@ -1,6 +1,6 @@
 #include "TextEditorFunctions.h"
 
-void getChoices(){
+void getChoices(string fileName){
     
     int choice;
 
@@ -44,10 +44,10 @@ void getChoices(){
             Decrypt();
         }
         else if(choice == 6){
-            Merge();
+            Merge(fileName);
         }
         else if(choice == 7){
-            countWords();
+            countWords(fileName);
         }
         else if(choice == 8){
             countCharacters();
@@ -123,11 +123,23 @@ void Merge(string fileName){
 
 }
 
-void countWords(){
+void countWords(string fileName){
 
+    fstream read((fileName + ".txt").c_str(), ios::in);
 
+    char word;
+    int counter = 0;
+
+    while(read >> word)
+    {
+        if(!iswspace(word))
+            counter++;
+    }
+
+    cout << "the file has " << counter << " words" << endl;
 }
-void countCharacters(){
+
+void countCharacters(string fileName){
 
 
 }
