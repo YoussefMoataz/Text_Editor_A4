@@ -50,7 +50,7 @@ void getChoices(string fileName){
             countWords(fileName);
         }
         else if(choice == 8){
-            countCharacters();
+            countCharacters(fileName);
         }
         else if(choice == 9){
             countLines();
@@ -125,22 +125,23 @@ void Merge(string fileName){
 
 void countWords(string fileName){
 
-    fstream read((fileName + ".txt").c_str(), ios::in);
-
-    char word;
-    int counter = 0;
-
-    while(read >> word)
-    {
-        if(!iswspace(word))
-            counter++;
-    }
-
-    cout << "the file has " << counter << " words" << endl;
+    
 }
 
 void countCharacters(string fileName){
 
+    fstream read((fileName + ".txt").c_str(), ios::in);
+
+    char character;
+    int counter = 0;
+
+    while(read >> character)
+    {
+        if(!iswspace(character))
+            counter++;
+    }
+
+    cout << "the file has " << counter << " characters" << endl;
 
 }
 void countLines(){

@@ -13,7 +13,7 @@ inline void encrypt();
 inline void Decrypt();
 inline void Merge(string);
 inline void countWords(string);
-inline void countCharacters();
+inline void countCharacters(string);
 inline void countLines();
 inline void searchWord();
 inline void countWordTime();
