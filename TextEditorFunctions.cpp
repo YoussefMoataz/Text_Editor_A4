@@ -255,10 +255,10 @@ void turnToUpper() {
 
     string fileContent = "";
 
-    char word [10000];
+    char line [10000];
 
-    while (file.getline(word, 10000)) {
-        fileContent += word;
+    while (file.getline(line, 10000)) {
+        fileContent += line;
         fileContent += "\n";
     }
 
@@ -276,9 +276,6 @@ void turnToUpper() {
 
     fileToWrite.close();
 
-//    cout << fileContent;
-
-
 }
 
 void turnToLower() {
@@ -287,10 +284,10 @@ void turnToLower() {
 
     string fileContent = "";
 
-    char word [10000];
+    char line [10000];
 
-    while (file.getline(word, 10000)) {
-        fileContent += word;
+    while (file.getline(line, 10000)) {
+        fileContent += line;
         fileContent += "\n";
     }
 
@@ -308,13 +305,34 @@ void turnToLower() {
 
     fileToWrite.close();
 
-//    cout << fileContent;
-
 }
 
 void turnTo1stCaps() {
 
+    fstream file(fileName.c_str(), ios::in);
 
+    string fileContent = "";
+
+    char line [10000];
+
+    while (file.getline(line, 10000)) {
+        fileContent += line;
+        fileContent += "\n";
+    }
+
+    file.close();
+
+    fileContent = upperFirst(fileContent);
+
+    fstream fileToWrite(fileName.c_str(), ios::out);
+
+    for (char c: fileContent) {
+
+        fileToWrite.put(c);
+
+    }
+
+    fileToWrite.close();
 
 }
 
@@ -339,4 +357,19 @@ string lower(string str) {
     }
 
     return newStr;
+}
+
+string upperFirst(string str) {
+
+    for (int i = 0; i < str.length(); i++) {
+
+        if (iswspace(str[i])){
+            str[i + 1] = toupper(str[i + 1]);
+        }else{
+            str[i + 1] = tolower(str[i + 1]);
+        }
+
+    }
+
+    return str;
 }

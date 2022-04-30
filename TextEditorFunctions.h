@@ -26,5 +26,6 @@ inline void exit();
 
 inline string upper(string str);
 inline string lower(string str);
+inline string upperFirst(string str);
 
 #endif
