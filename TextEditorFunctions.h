@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 #ifndef TEXT_EDITOR_A4_TEXTEDITORFUNCTIONS_H

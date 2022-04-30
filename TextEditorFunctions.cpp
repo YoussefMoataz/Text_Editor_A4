@@ -104,10 +104,25 @@ void Decrypt(){
 
 
 }
-void Merge(){
+void Merge(string fileName){
 
+    fstream mainFile((fileName + ".txt").c_str(), ios::app);
+
+    string newFileName; 
+    cout << "Enter the name of the file you want to merge : " << endl;
+    cin >> newFileName;
+
+    fstream newFile((newFileName + ".txt").c_str(), ios::in);
+
+    string str;
+
+    while(newFile >> str)
+    {
+        mainFile << str << " ";
+    }
 
 }
+
 void countWords(){
 
 
