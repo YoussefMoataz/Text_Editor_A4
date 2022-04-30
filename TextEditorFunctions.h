@@ -23,9 +23,9 @@ inline void Decrypt();
 
 inline void Merge();
 
-inline void countWords();
+inline int countWords();
 
-inline void countCharacters();
+inline void countCharacters(int);
 
 inline void countLines();
 
