@@ -1,12 +1,12 @@
 #include "TextEditorFunctions.h"
 
-string getFileName(int type){
+string getFileName(int type) {
 
     string fileName;
 
     if (type == 1) {
         cout << "Please enter file name :" << endl;
-    }else if (type == 2){
+    } else if (type == 2) {
         cout << "Please enter file name you want to merge :" << endl;
     }
 
@@ -18,14 +18,14 @@ string getFileName(int type){
 
 string fileName;
 
-void getChoices(){
+void getChoices() {
 
 //    fileName = getFileName(1);
     fileName = "file1.txt";
 
     int choice;
 
-    while(true){
+    while (true) {
         cout << "Welcome to Our Text Editor ! " << endl;
         cout << "Enter your choice : " << endl;
 
@@ -49,83 +49,72 @@ void getChoices(){
         cin >> choice;
 
 
-        if(choice == 1){
+        if (choice == 1) {
             addText();
-        }
-        else if(choice == 2){
+        } else if (choice == 2) {
             displayContent();
-        }
-        else if(choice == 3){
+        } else if (choice == 3) {
             empty();
-        }
-        else if(choice == 4){
+        } else if (choice == 4) {
             encrypt();
-        }
-        else if(choice == 5){
+        } else if (choice == 5) {
             Decrypt();
-        }
-        else if(choice == 6){
+        } else if (choice == 6) {
             Merge();
-        }
-        else if(choice == 7){
+        } else if (choice == 7) {
             countWords();
-        }
-        else if(choice == 8){
+        } else if (choice == 8) {
             countCharacters();
-        }
-        else if(choice == 9){
+        } else if (choice == 9) {
             countLines();
-        }
-        else if(choice == 10){
+        } else if (choice == 10) {
             searchWord();
-        }
-        else if(choice == 11){
+        } else if (choice == 11) {
             countWordTime();
-        }
-        else if(choice == 12){
+        } else if (choice == 12) {
             turnToUpper();
-        }
-        else if(choice == 13){
+        } else if (choice == 13) {
             turnToLower();
-        }
-        else if(choice == 14){
+        } else if (choice == 14) {
             turnTo1stCaps();
-        }
-        else if(choice == 15){
+        } else if (choice == 15) {
             save();
-        }
-        else if(choice == 16){
+        } else if (choice == 16) {
             cout << "Thanks for using Our Text Editor, GoodBye ! " << endl;
             exit(0);
-        }
-        else{
+        } else {
             cout << "Wrong Choice " << endl;
         }
     }
 
 }
 
-void addText(){
+void addText() {
 
 
 }
-void displayContent(){
+
+void displayContent() {
 
 
 }
-void empty(){
+
+void empty() {
 
 
 }
-void encrypt(){
+
+void encrypt() {
 
 
 }
-void Decrypt(){
+
+void Decrypt() {
 
 
 }
-void Merge(){
+
+void Merge() {
 
     fstream mainFile(fileName.c_str(), ios::app);
 
@@ -137,37 +126,34 @@ void Merge(){
 
     mainFile << '\n';
 
-    while(newFile >> str)
-    {
+    while (newFile >> str) {
         mainFile << str << " ";
     }
 
 }
 
-void countWords(){
+void countWords() {
 
     fstream read(fileName.c_str(), ios::in);
 
     string word;
     int counter = 0;
 
-    while(read >> word)
-    {
+    while (read >> word) {
         counter++;
     }
 
     cout << "The file has " << counter << " words" << endl;
 }
 
-void countCharacters(){
+void countCharacters() {
 
     fstream read(fileName.c_str(), ios::in);
 
     char character;
     int counter = 0;
 
-    while(read >> character)
-    {
+    while (read >> character) {
         counter++;
     }
 
@@ -175,15 +161,14 @@ void countCharacters(){
 
 }
 
-void countLines(){
+void countLines() {
 
     fstream read(fileName.c_str(), ios::in);
 
     string line;
     int counter = 0;
 
-    while(getline(read, line, '\n'))
-    {
+    while (getline(read, line, '\n')) {
         counter++;
     }
 
@@ -191,11 +176,37 @@ void countLines(){
 
 }
 
-void searchWord(){
+void searchWord() {
 
+    fstream read(fileName.c_str(), ios::in);
+
+    string str;
+    cout << "Enter a word to search for it" << endl;
+    cin >> str;
+
+    str = lower(str);
+
+    regex match("(" + str + ").*");
+
+    string fileContent = "";
+
+    char word;
+
+    while (read >> word) {
+        fileContent += word;
+    }
+
+    fileContent = lower(fileContent);
+
+    if (regex_search(fileContent, match)) {
+        cout << "Word was found in the file" << endl;
+    }else{
+        cout << "Word was not found in the file" << endl;
+    }
 
 }
-void countWordTime(){
+
+void countWordTime() {
 
     fstream read(fileName.c_str(), ios::in);
 
@@ -204,7 +215,7 @@ void countWordTime(){
 
     read >> singleWord;
 
-    while(!read.eof()){
+    while (!read.eof()) {
 
         fileContent += singleWord + " ";
         read >> singleWord;
@@ -238,31 +249,31 @@ void countWordTime(){
 
 }
 
-void turnToUpper(){
-
-
-}
-void turnToLower(){
-
-
-}
-void turnTo1stCaps(){
-
-
-}
-void save(){
+void turnToUpper() {
 
 
 }
 
-string arrayToString(string array){
+void turnToLower() {
 
-    string result;
 
-    for(char c : array){
-        result += tolower(c);
+}
+
+void turnTo1stCaps() {
+
+
+}
+
+void save() {
+
+
+}
+
+string lower(string str) {
+    string newStr = "";
+    for (int i = 0; i < str.length(); i++) {
+        newStr += tolower(str[i]);
     }
 
-    return result;
-
+    return newStr;
 }
