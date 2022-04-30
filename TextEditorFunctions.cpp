@@ -118,8 +118,6 @@ void Merge() {
 
     fstream mainFile(fileName.c_str(), ios::app);
 
-    string newFileName;
-
     fstream newFile(getFileName(2).c_str(), ios::in);
 
     string str;
@@ -130,32 +128,39 @@ void Merge() {
         mainFile << str << " ";
     }
 
+    mainFile.close();
+    newFile.close();
+
 }
 
 void countWords() {
 
-    fstream read(fileName.c_str(), ios::in);
+    fstream file(fileName.c_str(), ios::in);
 
     string word;
     int counter = 0;
 
-    while (read >> word) {
+    while (file >> word) {
         counter++;
     }
+
+    file.close();
 
     cout << "The file has " << counter << " words" << endl;
 }
 
 void countCharacters() {
 
-    fstream read(fileName.c_str(), ios::in);
+    fstream file(fileName.c_str(), ios::in);
 
     char character;
     int counter = 0;
 
-    while (read >> character) {
+    while (file >> character) {
         counter++;
     }
+
+    file.close();
 
     cout << "The file has " << counter << " characters" << endl;
 
@@ -163,14 +168,16 @@ void countCharacters() {
 
 void countLines() {
 
-    fstream read(fileName.c_str(), ios::in);
+    fstream file(fileName.c_str(), ios::in);
 
     string line;
     int counter = 0;
 
-    while (getline(read, line, '\n')) {
+    while (getline(file, line, '\n')) {
         counter++;
     }
+
+    file.close();
 
     cout << "The file has " << counter << " lines" << endl;
 
@@ -178,7 +185,7 @@ void countLines() {
 
 void searchWord() {
 
-    fstream read(fileName.c_str(), ios::in);
+    fstream file(fileName.c_str(), ios::in);
 
     string str;
     cout << "Enter a word to search for it" << endl;
@@ -190,17 +197,19 @@ void searchWord() {
 
     string fileContent = "";
 
-    char word [10000];
+    char word[10000];
 
-    while (read.getline(word, 10000)) {
+    while (file.getline(word, 10000)) {
         fileContent += word;
     }
+
+    file.close();
 
     fileContent = lower(fileContent);
 
     if (regex_search(fileContent, match)) {
         cout << "Word was found in the file" << endl;
-    }else{
+    } else {
         cout << "Word was not found in the file" << endl;
     }
 
@@ -208,19 +217,21 @@ void searchWord() {
 
 void countWordTime() {
 
-    fstream read(fileName.c_str(), ios::in);
+    fstream file(fileName.c_str(), ios::in);
 
     string fileContent;
     string singleWord;
 
-    read >> singleWord;
+    file >> singleWord;
 
-    while (!read.eof()) {
+    while (!file.eof()) {
 
         fileContent += singleWord + " ";
-        read >> singleWord;
+        file >> singleWord;
 
     }
+
+    file.close();
 
     string requiredWord;
     cout << "Enter ther required word :" << endl;
@@ -255,7 +266,7 @@ void turnToUpper() {
 
     string fileContent = "";
 
-    char line [10000];
+    char line[10000];
 
     while (file.getline(line, 10000)) {
         fileContent += line;
@@ -284,7 +295,7 @@ void turnToLower() {
 
     string fileContent = "";
 
-    char line [10000];
+    char line[10000];
 
     while (file.getline(line, 10000)) {
         fileContent += line;
@@ -313,7 +324,7 @@ void turnTo1stCaps() {
 
     string fileContent = "";
 
-    char line [10000];
+    char line[10000];
 
     while (file.getline(line, 10000)) {
         fileContent += line;
@@ -363,9 +374,9 @@ string upperFirst(string str) {
 
     for (int i = 0; i < str.length(); i++) {
 
-        if (iswspace(str[i])){
+        if (iswspace(str[i])) {
             str[i + 1] = toupper(str[i + 1]);
-        }else{
+        } else {
             str[i + 1] = tolower(str[i + 1]);
         }
 
