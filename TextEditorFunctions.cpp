@@ -1,7 +1,28 @@
 #include "TextEditorFunctions.h"
 
-void getChoices(string fileName){
-    
+string getFileName(int type){
+
+    string fileName;
+
+    if (type == 1) {
+        cout << "Please enter file name :" << endl;
+    }else if (type == 2){
+        cout << "Please enter file name you want to merge :" << endl;
+    }
+
+    cin >> fileName;
+
+    return fileName + ".txt";
+
+}
+
+string fileName;
+
+void getChoices(){
+
+//    fileName = getFileName(1);
+    fileName = "file1.txt";
+
     int choice;
 
     while(true){
@@ -44,16 +65,16 @@ void getChoices(string fileName){
             Decrypt();
         }
         else if(choice == 6){
-            Merge(fileName);
+            Merge();
         }
         else if(choice == 7){
-            countWords(fileName);
+            countWords();
         }
         else if(choice == 8){
-            countCharacters(fileName);
+            countCharacters();
         }
         else if(choice == 9){
-            countLines(fileName);
+            countLines();
         }
         else if(choice == 10){
             searchWord();
@@ -104,17 +125,17 @@ void Decrypt(){
 
 
 }
-void Merge(string fileName){
+void Merge(){
 
-    fstream mainFile((fileName + ".txt").c_str(), ios::app);
+    fstream mainFile(fileName.c_str(), ios::app);
 
-    string newFileName; 
-    cout << "Enter the name of the file you want to merge : " << endl;
-    cin >> newFileName;
+    string newFileName;
 
-    fstream newFile((newFileName + ".txt").c_str(), ios::in);
+    fstream newFile(getFileName(2).c_str(), ios::in);
 
     string str;
+
+    mainFile << '\n';
 
     while(newFile >> str)
     {
@@ -123,9 +144,9 @@ void Merge(string fileName){
 
 }
 
-void countWords(string fileName){
+void countWords(){
 
-    fstream read((fileName + ".txt").c_str(), ios::in);
+    fstream read(fileName.c_str(), ios::in);
 
     string word;
     int counter = 0;
@@ -135,29 +156,28 @@ void countWords(string fileName){
         counter++;
     }
 
-    cout << "the file has " << counter << " words" << endl;
+    cout << "The file has " << counter << " words" << endl;
 }
 
-void countCharacters(string fileName){
+void countCharacters(){
 
-    fstream read((fileName + ".txt").c_str(), ios::in);
+    fstream read(fileName.c_str(), ios::in);
 
     char character;
     int counter = 0;
 
     while(read >> character)
     {
-        if(!iswspace(character))
-            counter++;
+        counter++;
     }
 
-    cout << "the file has " << counter << " characters" << endl;
+    cout << "The file has " << counter << " characters" << endl;
 
 }
 
-void countLines(string fileName){
+void countLines(){
 
-    fstream read((fileName + ".txt").c_str(), ios::in);
+    fstream read(fileName.c_str(), ios::in);
 
     string line;
     int counter = 0;
@@ -167,7 +187,7 @@ void countLines(string fileName){
         counter++;
     }
 
-    cout << "the file has " << counter << " lines" << endl;
+    cout << "The file has " << counter << " lines" << endl;
 
 }
 
@@ -177,8 +197,47 @@ void searchWord(){
 }
 void countWordTime(){
 
+    fstream read(fileName.c_str(), ios::in);
+
+    string fileContent;
+    string singleWord;
+
+    read >> singleWord;
+
+    while(!read.eof()){
+
+        fileContent += singleWord + " ";
+        read >> singleWord;
+
+    }
+
+    string requiredWord;
+    cout << "Enter ther required word :" << endl;
+    cin >> requiredWord;
+
+    int wordindex = fileContent.find(requiredWord);
+
+    int counter = 0;
+
+    while (true) {
+
+        if (wordindex != -1) {
+
+            fileContent = fileContent.substr(wordindex + requiredWord.length() - 1, fileContent.length() - 1);
+
+            wordindex = fileContent.find(requiredWord);
+
+            counter++;
+        } else {
+            break;
+        }
+
+    }
+
+    cout << "The word : \"" + requiredWord + "\"" + " is found : " + to_string(counter) + " times in the file." << endl;
 
 }
+
 void turnToUpper(){
 
 
@@ -193,5 +252,17 @@ void turnTo1stCaps(){
 }
 void save(){
 
+
+}
+
+string arrayToString(string array){
+
+    string result;
+
+    for(char c : array){
+        result += tolower(c);
+    }
+
+    return result;
 
 }
