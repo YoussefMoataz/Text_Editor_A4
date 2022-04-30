@@ -251,15 +251,69 @@ void countWordTime() {
 
 void turnToUpper() {
 
+    fstream file(fileName.c_str(), ios::in);
+
+    string fileContent = "";
+
+    char word [10000];
+
+    while (file.getline(word, 10000)) {
+        fileContent += word;
+        fileContent += "\n";
+    }
+
+    file.close();
+
+    fileContent = upper(fileContent);
+
+    fstream fileToWrite(fileName.c_str(), ios::out);
+
+    for (char c: fileContent) {
+
+        fileToWrite.put(c);
+
+    }
+
+    fileToWrite.close();
+
+//    cout << fileContent;
+
 
 }
 
 void turnToLower() {
 
+    fstream file(fileName.c_str(), ios::in);
+
+    string fileContent = "";
+
+    char word [10000];
+
+    while (file.getline(word, 10000)) {
+        fileContent += word;
+        fileContent += "\n";
+    }
+
+    file.close();
+
+    fileContent = lower(fileContent);
+
+    fstream fileToWrite(fileName.c_str(), ios::out);
+
+    for (char c: fileContent) {
+
+        fileToWrite.put(c);
+
+    }
+
+    fileToWrite.close();
+
+//    cout << fileContent;
 
 }
 
 void turnTo1stCaps() {
+
 
 
 }
@@ -267,6 +321,15 @@ void turnTo1stCaps() {
 void save() {
 
 
+}
+
+string upper(string str) {
+    string newStr = "";
+    for (int i = 0; i < str.length(); i++) {
+        newStr += toupper(str[i]);
+    }
+
+    return newStr;
 }
 
 string lower(string str) {
