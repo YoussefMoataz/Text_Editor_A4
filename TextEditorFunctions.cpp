@@ -186,13 +186,13 @@ void searchWord() {
 
     str = lower(str);
 
-    regex match("(" + str + ").*");
+    regex match("( " + str + " ).*");
 
     string fileContent = "";
 
-    char word;
+    char word [10000];
 
-    while (read >> word) {
+    while (read.getline(word, 10000)) {
         fileContent += word;
     }
 
