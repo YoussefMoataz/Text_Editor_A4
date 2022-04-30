@@ -127,7 +127,7 @@ void countWords(string fileName){
 
     fstream read((fileName + ".txt").c_str(), ios::in);
 
-    string word;
+    char word;
     int counter = 0;
 
     while(read >> word)
@@ -171,8 +171,34 @@ void countLines(string fileName){
 
 }
 
-void searchWord(){
+void searchWord(string fileName){
 
+    fstream read((fileName + ".txt").c_str(), ios::in);
+
+    string str;
+    cout << "Enter a word to search for it" << endl;
+    cin >> str;
+
+    str = lower(str);
+
+    regex match("(" + str + ").*");
+
+    string fileContent = "";
+
+    char word;
+    int counter = 0;
+
+    while(read >> word)
+    {
+        fileContent += word;
+    }
+
+    fileContent = lower(fileContent);
+
+    if(regex_search(fileContent, match))
+    {
+        cout << "yes" << endl;
+    }
 
 }
 void countWordTime(){
@@ -194,4 +220,15 @@ void turnTo1stCaps(){
 void save(){
 
 
+}
+
+string lower(string str)
+{
+    string newStr = "";
+    for(int i = 0; i < str.length(); i++)
+    {
+        newStr += tolower(str[i]);
+    }
+
+    return newStr;
 }

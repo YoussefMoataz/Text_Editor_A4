@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <regex>
 using namespace std;
 
 #ifndef TEXT_EDITOR_A4_TEXTEDITORFUNCTIONS_H
@@ -22,5 +23,7 @@ inline void turnToLower();
 inline void turnTo1stCaps();
 inline void save();
 inline void exit();
+
+inline string lower(string);
 
 #endif
