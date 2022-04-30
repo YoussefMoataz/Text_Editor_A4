@@ -5,6 +5,8 @@ using namespace std;
 #ifndef TEXT_EDITOR_A4_TEXTEDITORFUNCTIONS_H
 #define TEXT_EDITOR_A4_TEXTEDITORFUNCTIONS_H
 
+string fileName;
+
 inline void getChoices(string);
 inline void addText();
 inline void displayContent();
