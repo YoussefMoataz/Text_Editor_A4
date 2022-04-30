@@ -8,6 +8,8 @@ string getFileName(int type) {
         cout << "Please enter file name :" << endl;
     } else if (type == 2) {
         cout << "Please enter file name you want to merge :" << endl;
+    } else if (type == 3) {
+        cout << "Please enter the new file name :" << endl;
     }
 
     cin >> fileName;
@@ -20,8 +22,8 @@ string fileName;
 
 void getChoices() {
 
-//    fileName = getFileName(1);
-    fileName = "file1.txt";
+    fileName = getFileName(1);
+//    fileName = "file1.txt";
 
     int choice;
 
@@ -277,7 +279,7 @@ void turnToUpper() {
 
     fileContent = upper(fileContent);
 
-    fstream fileToWrite(fileName.c_str(), ios::out);
+    fstream fileToWrite(tempFile.c_str(), ios::out);
 
     for (char c: fileContent) {
 
@@ -306,7 +308,7 @@ void turnToLower() {
 
     fileContent = lower(fileContent);
 
-    fstream fileToWrite(fileName.c_str(), ios::out);
+    fstream fileToWrite(tempFile.c_str(), ios::out);
 
     for (char c: fileContent) {
 
@@ -335,7 +337,7 @@ void turnTo1stCaps() {
 
     fileContent = upperFirst(fileContent);
 
-    fstream fileToWrite(fileName.c_str(), ios::out);
+    fstream fileToWrite(tempFile.c_str(), ios::out);
 
     for (char c: fileContent) {
 
@@ -349,6 +351,44 @@ void turnTo1stCaps() {
 
 void save() {
 
+    cout << "Do you want to (1) Save to the same file" << endl;
+    cout << "(2) Save to different file" << endl;
+
+    int choice;
+
+    cin >> choice;
+
+    if(choice == 1){
+
+        fstream mainFile(tempFile.c_str(), ios::in);
+
+        fstream newFile(fileName.c_str(), ios::out);
+
+        char str [10000];
+
+        while (mainFile.getline(str, 10000)) {
+            newFile << str << "\n";
+        }
+
+        mainFile.close();
+        newFile.close();
+
+    }else if (choice == 2){
+
+        fstream mainFile(tempFile.c_str(), ios::in);
+
+        fstream newFile(getFileName(3).c_str(), ios::out);
+
+        char str [10000];
+
+        while (mainFile.getline(str, 10000)) {
+            newFile << str << "\n";
+        }
+
+        mainFile.close();
+        newFile.close();
+
+    }
 
 }
 
@@ -371,6 +411,8 @@ string lower(string str) {
 }
 
 string upperFirst(string str) {
+
+    str[0] = toupper(str[0]);
 
     for (int i = 0; i < str.length(); i++) {
 
