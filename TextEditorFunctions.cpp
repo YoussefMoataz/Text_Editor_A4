@@ -64,9 +64,9 @@ void getChoices() {
         } else if (choice == 6) {
             Merge();
         } else if (choice == 7) {
-            countWords();
+            cout << "The file has " << countWords() << " words" << endl; 
         } else if (choice == 8) {
-            countCharacters();
+            countCharacters(countWords());
         } else if (choice == 9) {
             countLines();
         } else if (choice == 10) {
@@ -135,7 +135,7 @@ void Merge() {
 
 }
 
-void countWords() {
+int countWords() {
 
     fstream file(fileName.c_str(), ios::in);
 
@@ -148,33 +148,25 @@ void countWords() {
 
     file.close();
 
-    cout << "The file has " << counter << " words" << endl;
+    return counter;
 }
 
-void countCharacters() {
+void countCharacters(int spaces) {
 
     fstream file(fileName.c_str(), ios::in);
 
     char character;
-    string word;
-    int counterChars = 0;
-    int counterWords = 0;
+    int counter = 0;
 
     while (file >> character) {
-        counterChars++;
+        counter++;
     }
 
     file.close();
 
-    file.open(fileName.c_str(), ios::in);
+    counter += spaces - 1;
 
-    while (file >> word) {
-        counterWords++;
-    }
-
-    file.close();
-
-    cout << "The file has " << (counterChars + counterWords - 1) << " characters" << endl;
+    cout << "The file has " << counter << " characters" << endl;
 
 }
 
