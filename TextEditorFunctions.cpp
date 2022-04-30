@@ -156,15 +156,25 @@ void countCharacters() {
     fstream file(fileName.c_str(), ios::in);
 
     char character;
-    int counter = 0;
+    string word;
+    int counterChars = 0;
+    int counterWords = 0;
 
     while (file >> character) {
-        counter++;
+        counterChars++;
     }
 
     file.close();
 
-    cout << "The file has " << counter << " characters" << endl;
+    file.open(fileName.c_str(), ios::in);
+
+    while (file >> word) {
+        counterWords++;
+    }
+
+    file.close();
+
+    cout << "The file has " << (counterChars + counterWords - 1) << " characters" << endl;
 
 }
 
