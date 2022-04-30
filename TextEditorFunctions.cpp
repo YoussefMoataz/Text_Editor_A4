@@ -1,6 +1,6 @@
 #include "TextEditorFunctions.h"
 
-void getChoices(){
+void getChoices(string fileName){
     
     int choice;
 
@@ -44,13 +44,13 @@ void getChoices(){
             Decrypt();
         }
         else if(choice == 6){
-            Merge();
+            Merge(fileName);
         }
         else if(choice == 7){
-            countWords();
+            countWords(fileName);
         }
         else if(choice == 8){
-            countCharacters();
+            countCharacters(fileName);
         }
         else if(choice == 9){
             countLines();
@@ -104,16 +104,54 @@ void Decrypt(){
 
 
 }
-void Merge(){
+void Merge(string fileName){
 
+    fstream mainFile((fileName + ".txt").c_str(), ios::app);
+
+    string newFileName; 
+    cout << "Enter the name of the file you want to merge : " << endl;
+    cin >> newFileName;
+
+    fstream newFile((newFileName + ".txt").c_str(), ios::in);
+
+    string str;
+
+    while(newFile >> str)
+    {
+        mainFile << str << " ";
+    }
 
 }
-void countWords(){
 
+void countWords(string fileName){
 
+    fstream read((fileName + ".txt").c_str(), ios::in);
+
+    string word;
+    int counter = 0;
+
+    while(read >> word)
+    {
+        counter++;
+    }
+
+    cout << "the file has " << counter << " words" << endl;
 }
-void countCharacters(){
 
+void countCharacters(string fileName){
+
+    fstream read((fileName + ".txt").c_str(), ios::in);
+
+    char character;
+    int counter = 0;
+
+    while(read >> character)
+    {
+        if(!iswspace(character))
+            counter++;
+    }
+
+    cout << "the file has " << counter << " characters" << endl;
 
 }
 void countLines(){
