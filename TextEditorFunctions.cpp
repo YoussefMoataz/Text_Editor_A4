@@ -53,7 +53,7 @@ void getChoices(string fileName){
             countCharacters(fileName);
         }
         else if(choice == 9){
-            countLines();
+            countLines(fileName);
         }
         else if(choice == 10){
             searchWord();
@@ -154,10 +154,23 @@ void countCharacters(string fileName){
     cout << "the file has " << counter << " characters" << endl;
 
 }
-void countLines(){
 
+void countLines(string fileName){
+
+    fstream read((fileName + ".txt").c_str(), ios::in);
+
+    string line;
+    int counter = 0;
+
+    while(getline(read, line, '\n'))
+    {
+        counter++;
+    }
+
+    cout << "the file has " << counter << " lines" << endl;
 
 }
+
 void searchWord(){
 
 
