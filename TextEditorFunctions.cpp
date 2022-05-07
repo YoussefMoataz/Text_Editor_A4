@@ -92,6 +92,12 @@ void getChoices() {
 }
 
 void addText() {
+    fstream file(fileName.c_str(), ios::app);
+        string userInput;
+        while(getline(cin, userInput)){
+        file << userInput << endl;
+        }
+        file.close();
 
 
 }
