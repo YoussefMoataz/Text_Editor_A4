@@ -7,7 +7,7 @@ using namespace std;
 #ifndef TEXT_EDITOR_A4_TEXTEDITORFUNCTIONS_H
 #define TEXT_EDITOR_A4_TEXTEDITORFUNCTIONS_H
 
-inline const string tempFile = "fileTEMPfile.txt";
+const string tempFile = "fileTEMPfile.txt";
 
 inline void getChoices();
 

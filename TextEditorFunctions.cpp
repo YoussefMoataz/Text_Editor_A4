@@ -93,6 +93,22 @@ void getChoices() {
 
 void addText() {
 
+    cout << "To stop input: Press (Enter) then (CTRL+Z) then (Enter)" << endl;
+
+    fstream file(fileName.c_str(), ios::app);
+
+    char line[10000];
+
+    while (!cin.eof()) {
+        cin.getline(line, 10000, '\n');
+        if (!cin.eof()) {
+            file << line << '\n';
+        }
+    }
+
+    file.close();
+
+    cin.clear();
 
 }
 
