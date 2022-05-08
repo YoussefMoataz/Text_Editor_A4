@@ -41,8 +41,6 @@ inline void turnTo1stCaps();
 
 inline void save();
 
-inline void exit();
-
 inline string upper(string str);
 
 inline string lower(string str);
