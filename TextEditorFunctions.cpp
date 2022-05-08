@@ -132,6 +132,9 @@ void displayContent() {
 
 void empty() {
 
+    fstream file(fileName.c_str(), ios::out);
+
+    file.close();
 
 }
 
