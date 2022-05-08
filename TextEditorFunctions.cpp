@@ -114,6 +114,19 @@ void addText() {
 
 void displayContent() {
 
+    fstream file(fileName.c_str(), ios::in);
+
+    char str[10000];
+
+    cout << "---START FILE CONTENT---" << endl;
+
+    while (file.getline(str, 10000)) {
+        cout << str << endl;
+    }
+
+    cout << "---END FILE CONTENT---" << endl << endl;
+
+    file.close();
 
 }
 
