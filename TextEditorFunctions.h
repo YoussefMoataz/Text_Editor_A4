@@ -49,4 +49,8 @@ inline string lower(string str);
 
 inline string upperFirst(string str);
 
+inline string encryption(string text);
+
+inline string decryption(string text);
+
 #endif

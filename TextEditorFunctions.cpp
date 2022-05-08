@@ -100,10 +100,13 @@ void addText() {
     char line[10000];
 
     while (!cin.eof()) {
+
         cin.getline(line, 10000, '\n');
+
         if (!cin.eof()) {
             file << line << '\n';
         }
+
     }
 
     file.close();
@@ -140,11 +143,60 @@ void empty() {
 
 void encrypt() {
 
+    fstream file(fileName.c_str(), ios::in);
+
+    string fileContent = "";
+
+    char line[10000];
+
+    while (file.getline(line, 10000)) {
+        fileContent += line;
+        fileContent += "\n";
+    }
+
+    file.close();
+
+    fileContent = encryption(fileContent);
+
+    fstream fileToWrite(fileName.c_str(), ios::out);
+
+    for (char c: fileContent) {
+
+        fileToWrite.put(c);
+
+    }
+
+    fileToWrite.close();
 
 }
 
 void Decrypt() {
 
+
+    fstream file(fileName.c_str(), ios::in);
+
+    string fileContent = "";
+
+    char line[10000];
+
+    while (file.getline(line, 10000)) {
+        fileContent += line;
+        fileContent += "\n";
+    }
+
+    file.close();
+
+    fileContent = decryption(fileContent);
+
+    fstream fileToWrite(fileName.c_str(), ios::out);
+
+    for (char c: fileContent) {
+
+        fileToWrite.put(c);
+
+    }
+
+    fileToWrite.close();
 
 }
 
@@ -467,4 +519,36 @@ string upperFirst(string str) {
     }
 
     return str;
+}
+
+string encryption(string text){
+
+    for (int i = 0; i < text.length(); ++i) {
+
+        if (text[i] == '\n'){
+            continue;
+        }
+
+        text[i] = (char)((int)(text[i]) + 1);
+
+    }
+
+    return text;
+
+}
+
+string decryption(string text){
+
+    for (int i = 0; i < text.length(); ++i) {
+
+        if (text[i] == '\n'){
+            continue;
+        }
+
+        text[i] = (char)((int)(text[i]) - 1);
+
+    }
+
+    return text;
+
 }
